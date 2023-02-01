@@ -7,7 +7,7 @@ const bodyParser=require("body-parser")
 const app = express()
 const port = 3000
 var qs = require('querystring');
-const bcrypt=require("bcrypt")
+
 const { equal } = require('assert')
 const path=require("path");
 
