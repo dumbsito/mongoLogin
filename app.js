@@ -11,10 +11,7 @@ const bcrypt=require("bcrypt")
 const { equal } = require('assert')
 const path=require("path");
 
-app.use(express.static(path.join(__dirname,"./notes")))
-app.get("/",(req,res)=>{
-    res.sendFile(path.join(__dirname,"/notes/index.html"))
-})
+
 
 app.use(bodyParser.urlencoded({
     extended:true
