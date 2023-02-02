@@ -73,7 +73,8 @@ res.json({lol:"dou"})
      
   })
 
-app.post("/login",async (req,res)=>{
+app.post("/login", (req,res)=>{
+  res.json({lol:"dou"})
 
   const email= req.body.email;
   const password = req.body.password;
