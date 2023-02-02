@@ -79,8 +79,8 @@ app.post("/login", (req,res)=>{
   const password = req.body.password;
    connection.query('SELECT * FROM users WHERE email = ?',[email], function (error, results, fields) {
        if (error) {
-  
-           res.send({user:error});
+     console.log("holaa");
+           res.send(error);
         }else  {
                  console.log('The solution is:', results);
          if(results.length >0){
