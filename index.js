@@ -5,12 +5,11 @@ const mysql=require("mysql")
 const session=require("express-session")
 const bodyParser=require("body-parser")
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000;
 var qs = require('querystring');
 
 const { equal } = require('assert')
 const path=require("path");
-
 
 
 
