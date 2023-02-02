@@ -46,7 +46,7 @@ const connection=require("./db")
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
 app.post("/register",(req,res)=>{
-
+res.json({lol:"dou"})
   connection.query("SELECT COUNT(*) AS cnt FROM users WHERE email = ? " , 
   req.body.email , function(err , data){
      if(err){
