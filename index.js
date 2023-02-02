@@ -14,14 +14,13 @@ const path=require("path");
 
 
 
-const cors=require("cors");
+/*const cors=require("cors");
 const corsOptions ={
    origin:'*', 
    credentials:true,            //access-control-allow-credentials:true
    optionSuccessStatus:200,
 }
-
-app.use(cors(corsOptions)) 
+app.use(cors(corsOptions)) */
 app.use(bodyParser.urlencoded({
     extended:true
 }))
@@ -46,7 +45,7 @@ const connection=require("./db")
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
 app.post("/register",(req,res)=>{
-res.json({lol:"dou"})
+
   connection.query("SELECT COUNT(*) AS cnt FROM users WHERE email = ? " , 
   req.body.email , function(err , data){
      if(err){
@@ -64,6 +63,7 @@ res.json({lol:"dou"})
                  }else{
                   console.log(" alta  existosa ")
                   res.send({emailExist:false})
+                
                  }
              })                  
          }
@@ -74,13 +74,13 @@ res.json({lol:"dou"})
   })
 
 app.post("/login", (req,res)=>{
-  res.json({lol:"dou"})
+
 
   const email= req.body.email;
   const password = req.body.password;
    connection.query('SELECT * FROM users WHERE email = ?',[email], function (error, results, fields) {
        if (error) {
-        res.send(error)
+     
            res.send({user:"error"});
         }else  {
                  console.log('The solution is:', results);
