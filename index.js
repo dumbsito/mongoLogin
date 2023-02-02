@@ -12,6 +12,8 @@ const { equal } = require('assert')
 const path=require("path");
 
 
+
+
 const cors=require("cors");
 const corsOptions ={
    origin:'*', 
@@ -77,6 +79,7 @@ app.post("/login",async (req,res)=>{
   const password = req.body.password;
    connection.query('SELECT * FROM users WHERE email = ?',[email], function (error, results, fields) {
        if (error) {
+        console.log(error);
            res.send({user:"error"});
         }else  {
                  console.log('The solution is:', results);
