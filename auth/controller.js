@@ -11,9 +11,9 @@ exports.createUser = (req, res, next) => {
   }
 
   User.create(newUser, (err, user) => {
-    if (err && err.code === 11000) return res.send({error: 'email already exist'});
-    if (err) return res.send({error: 'Server error'});
-    const expiresIn = 24 * 60 * 60;
+    if (err && err.code === 11000) return res.send({emailExist: true});
+    if (err) return res.send({emailExist: 'ServerError'});
+   const expiresIn = 24 * 60 * 60;
     const accessToken = jwt.sign({ id: user.id },
       SECRET_KEY, {
         expiresIn: expiresIn
@@ -24,8 +24,9 @@ exports.createUser = (req, res, next) => {
       accessToken: accessToken,
       expiresIn: expiresIn
     }
-    // response 
+    
     res.send({ dataUser });
+  
   });
 }
 
@@ -35,11 +36,11 @@ exports.loginUser = (req, res, next) => {
     password: req.body.password
   }
   User.findOne({ email: userData.email }, (err, user) => {
-    if (err) return res.status(500).send('Server error!');
+    if (err) return res.send({response:"serverError"});
 
     if (!user) {
       // email does not exist
-      res.status(409).send({ message: 'Something is wrong' });
+      res.send({ response: 'notExists' });
     } else {
       const resultPassword = bcrypt.compareSync(userData.password, user.password);
       if (resultPassword) {
@@ -52,10 +53,12 @@ exports.loginUser = (req, res, next) => {
           accessToken: accessToken,
           expiresIn: expiresIn
         }
+         
         res.send({ dataUser });
+      
       } else {
         // password wrong
-        res.status(409).send({ message: 'Something is wrong' });
+        res.send({response: 'passwordIncorrect'});
       }
     }
   });
