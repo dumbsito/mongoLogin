@@ -36,7 +36,7 @@ exports.loginUser = (req, res, next) => {
     password: req.body.password
   }
   User.findOne({ email: userData.email }, (err, user) => {
-    if (err) return res.send({response:"serverError"});
+    if (err) return res.send(err);
 
     if (!user) {
       // email does not exist
