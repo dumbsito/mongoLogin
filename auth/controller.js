@@ -54,7 +54,7 @@ exports.loginUser = (req, res, next) => {
           expiresIn: expiresIn
         }
          
-        res.send({ dataUser });
+        res.send({ dataUser },{response:"exito"});
       
       } else {
         // password wrong
